@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div id="divTop">
+            &nbsp;&nbsp;&nbsp;<a id="a_HomePage" href="HomePage.html">醉品茶叶首页</a>
+            <script>
+                $(function () {
+                    $("#a_HomePage").click(function () {
+                        window.sessionStorage.removeItem("Tname");
+                    })
+                })
+            </script>
+            <a>M2O体验店加盟</a>
+            <a>现无手机版</a>
+            <div style="float:right;margin-right:50px">
+                <ul>
+                    <li style="color:#a89d9d;background-color:orangered;height:45px;text-align:center; margin-left:35px;">
+                        <img src="Images/购物车图标.png" style="width:25px;height:22px" />
+                        <a href="Cart.html" style="float:none;margin-right:30px;margin-left:1px;color:white">
+                            <span id="span_Number">购物车</span>
+                        </a>
+                        <script>
+                            var Uid = window.sessionStorage.getItem("Uid");
+                            $(function () {
+                                if (Uid != null) {
+                                    $.ajax({
+                                        url: "Handlers/GetNumber_Cart.ashx",
+                                        type: "post",
+                                        data: { "Uid": Uid },
+                                        success: function (data) {
+                                            $("#span_Number").html("购物车(" + data + ")")
+                                        }
+                                    });
+                                }
+                            })
+                        </script>
+                    </li>
+                    <li><a><img src="Images/电话.png" style="width:25px;height:22px" />13168698809</a></li>
+                    <li><a href="aboutZuip.html">关于醉品</a></li>
+                    <li><a href="MYaccount.html">我的账号</a></li>
+                    <li id="li_Login"><a id="a_Login" href="Login.html">登录</a></li>
+                    <li id="li_Zhuxiao"><a style="display:none" onclick="Zhuxiao()">注销</a></li>
+                </ul>
+            </div>
+            <script>
+                var Uid = window.sessionStorage.getItem("Uid");
+                $(function () {
+                    if (Uid != null) {
+                        $.ajax({
+                            url: "Handlers/Users_PersonInfo_GetListByUid.ashx",
+                            type: "post",
+                            data: { "Uid": Uid },
+                            success: function (data) {
+                                var jsonData = $.parseJSON(data);
+                                $("#li_Login a").html(jsonData.LoginName);
+                                $("#li_Login a").attr("href", "#");
+                                $("#li_Zhuxiao a").css("display", "");
+                            }
+                        });
+                    }
+                })
+                function Zhuxiao()
+                {
+                    if (confirm("你确定要注销此账号？"))
+                    {
+                        window.sessionStorage.removeItem("Uid");
+                        window.location.href = "Login.html"
+                    }
+                }
+            </script>
+        </div>
+        <div style="width:1350px;height:100px;margin-top:0px;">
+            <img src="Images/20180108横幅1.gif" style="width:1350px;height:80px" />
+        </div>
+        <div>
+            <img src="Images/logo.gif" style="width:200px;height:100px;margin-left:30px;margin-bottom:10px;" />
+        </div>
+        <div class="input-group" style="width:493px;margin-top:-60px;">
+            <input id="txt_Tname" type="text" style="height:34px;margin-left:300px;width:439px" placeholder="茶叶名">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="btton_Search()"><i class="glyphicon glyphicon-zoom-in"></i></button>
+            </span>
+        </div>
+        <script>
+            function btton_Search() {
+                if ($("#txt_Tname").val()=="") {
+                    alert("请输入要查找的茶叶名");
+                }
+                else {         
+                        window.sessionStorage.setItem("Tname", $("#txt_Tname").val());
+                    window.location.href = "HomePage.html";
+                }               
+            }
+        </script>
+        <div style="width:320px;margin-top:-40px;margin-left:820px;">
+            <img src="Images/首页顶部图标.png" style="width:320px;height:58px;margin-left:30px;" />
+        </div>
+        <div style="margin-left:50px;padding-top:10px;"><i class="glyphicon glyphicon-th-list"></i><span style="font-size:16px;line-height:18px;">全部商品分类</span></div>
+        <div style="padding-top:10px;margin-top:-30px;margin-left:500px;width:550px">
+            <a class="a_marlef30">品牌集成馆</a>
+            <a class="a_marlef30">线下体验店</a>
+            <a class="a_marlef30">积分商城</a>
+        </div>
+    </div>
+</body>
+</html>

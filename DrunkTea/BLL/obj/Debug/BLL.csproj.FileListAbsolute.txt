@@ -1,0 +1,11 @@
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\BLL.dll
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\BLL.pdb
+E:\个人项目-醉品茶叶\DrunkTea\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+E:\个人项目-醉品茶叶\DrunkTea\BLL\obj\Debug\BLL.dll
+E:\个人项目-醉品茶叶\DrunkTea\BLL\obj\Debug\BLL.pdb
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\DAL.dll
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\Model.dll
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\DBUtility.dll
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\DAL.pdb
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\Model.pdb
+E:\个人项目-醉品茶叶\DrunkTea\BLL\bin\Debug\DBUtility.pdb

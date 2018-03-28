@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>首页 醉品茶叶</title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="divTop_top" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divTop_top").load("Top.html");
+        });
+    </script>
+    <div class="content2" style="margin-top:20px;">
+            <div class="body_background">
+                <ul class="pic">
+                    <li style="display: block">
+                        <img src="Images/轮播1.png" class="addcart" />
+                    </li>
+                    <li>
+                        <img src="Images/轮播2.png" class="" />
+                    </li>
+                    <li>
+                        <img src="Images/轮播3.png" class="" />
+                    </li>
+                    <li>
+                        <img src="Images/轮播4.png" class="" />
+                    </li>
+                    <li>
+                        <img src="Images/轮播5.png" class="" />
+                    </li>
+                </ul>
+                <ul class="body_background2">
+                    <li class="active"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+    </div>  
+    <script>
+        var index = 0;//初始化一个下标
+
+        function Tu() {
+            index++;
+            if (index > 4) {
+                $(".body_background2 li").siblings(".active").removeClass("active");
+                $(".body_background2 li:first").addClass("active");
+                index = 0;
+                $(".pic li").eq(index).fadeIn().siblings().fadeOut();//淡入淡出
+                return;
+            }
+
+            $(".body_background2 li").siblings(".active").removeClass("active").next().addClass("active");
+
+            $(".pic li").eq(index).fadeIn().siblings().fadeOut();//淡入淡出
+        }
+        setInterval(Tu, 5000)
+        $(".body_background2 li").click(function () {
+            index = $(this).index();//获取下标
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".pic li").eq(index).fadeIn().siblings().fadeOut();//淡入淡出
+        });
+    </script>
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="DivTypeTeas" style="background-color:#403a3a;width:234px;">
+        <dl>
+            <dd>
+                <button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="0" onclick="typeButtonClick(this.value)">全&nbsp;&nbsp;&nbsp;部</button>
+            </dd>
+            <dd><button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="1" onclick="typeButtonClick(this.value)">绿&nbsp;&nbsp;&nbsp;茶</button>
+            </dd>
+            <dd><button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="2" onclick="typeButtonClick(this.value)">红&nbsp;&nbsp;&nbsp;茶</button>
+            </dd>
+            <dd><button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="3" onclick="typeButtonClick(this.value)">乌龙茶</button> 
+            </dd>
+            <dd><button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="4" onclick="typeButtonClick(this.value)">黑&nbsp;&nbsp;&nbsp;茶</button>
+            <dd><button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="5" onclick="typeButtonClick(this.value)">白&nbsp;&nbsp;&nbsp;茶</button>
+            <dd><button class="btn btn-link" style="outline:none;text-align:center;TEXT-DECORATION: none" value="6" onclick="typeButtonClick(this.value)">花&nbsp;&nbsp;&nbsp;茶</button>
+            </dd>
+        </dl>
+    </div>
+    <div id="DivImgList2" style="height:250px">
+        <ul style="width:1350px;padding-right:30px;">
+            <li><img src="Images/图片1.jpg" /></li>
+            <li><img src="Images/图片2.jpg" /></li>
+            <li><img src="Images/图片3.jpg" /></li>
+            <li><img src="Images/图片4.jpg" /></li>
+        </ul>  
+        <span id="span_text" style="float:left;padding-top:30px;padding-left:50px;font-size:25px;">自选商品</span>
+    </div>
+    <div id="DivTeas" style="width:1350px;text-align:center;background-color:#e4e4e4;overflow:auto">
+        <!--<ul style="width:234px;height:300px;text-align:center;background-color:white;margin-left:30px;"  onmouseover="divHoverHiddenCarover(this)" onmouseout="divHoverHiddenCarout(this)">
+            <li><img src="Images/醉品朴茶.jpg" /></li>
+            <li>
+                <label style="margin-right:10px">醉品朴茶</label><label>乌龙茶</label><br />
+                <label style="width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis">
+                    传承大师刘安兴点电脑moan你的看你制作
+                </label><br />
+            </li>
+            <li><label>￥19.2</label></li>
+            <li style="margin-top:12px;"><button style="height:50px;width:100%;border:0px;font-size:19px;display:none" onclick="alert('购物车成功')">加入购物车</button></li>
+        </ul>-->   
+    </div>
+    <script>
+        var Uid = window.sessionStorage.getItem("Uid");
+        var Tname=window.sessionStorage.getItem("Tname");
+        function divHoverHiddenCarover(obj) {
+            $(obj).children("li:last").children().css("background-color", "red");
+            $(obj).children("li:last").children().css("display", "");
+        }
+        function divHoverHiddenCarout(obj) {
+            $(obj).children("li:last").children().css("background-color", "red");
+            $(obj).children("li:last").children().css("display", "none");
+        }
+        $(function () {
+            
+            if (Tname!=null) {
+                $.ajax({
+                    url: "../Handlers/Teas_GetListByTName.ashx",
+                    type: "post",
+                    data: { "Tname": Tname },
+                    success: function (data) {
+                        var josnData = $.parseJSON(data);
+                        if (josnData.length==0) {
+                            var div2 = $("#DivTeas");
+                            div2.text("");
+                            div2.css("padding-top", "50px");
+                            div2.append("<span style='font-size:20px;height:200px;margin-bottom:50px'>没有找到与<span style='color:orangered'>&nbsp;&nbsp;'" + Tname + "'&nbsp;&nbsp;</span>相关的商品</span><br /><br /><br /><br />");
+                        }
+                        else {
+                            var n = $.parseJSON(data).length;
+                            var div = "";
+                            for (var i = 0; i < n; i++) {
+                                div += "<ul style='width:234px;height:350px;text-align:center;background-color:white;margin-left:30px;'  onmouseover='divHoverHiddenCarover(this)' onmouseout='divHoverHiddenCarout(this)'> <li><img style='height:160px;margin-top:10px' src='UsersImage/" + josnData[i].Imagepath + "' /></li><li><label style='margin-right:10px'>" + josnData[i].Tname + "</label><label>" + josnData[i].cateName + "</label><br />"
+                                div += "<label style='width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis'>" + josnData[i].brief + "</label><br /></li><li><label>￥" + josnData[i].price + "</label></li><li style='margin-top:12px;'><label style='width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis'>" + josnData[i].Purchaseqtity + "人购买</label><br /></li><li style='margin-top:12px;'><button style='height:50px;width:234px;border:0px;font-size:19px;display:none' onclick='BtnAddCard(this.value)' value='" + josnData[i].Tid + "'>加入购物车</button></li></ul>"
+                            }
+                            var div2 = $("#DivTeas");
+                            div2.text("");
+                            div2.append(div);
+                        }
+                        window.sessionStorage.removeItem("Tname");
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    url: "../Handlers/Teas_GetList.ashx",
+                    type: "get",
+                    success: function (data) {
+                        var josnData = $.parseJSON(data);
+                        var n = $.parseJSON(data).length;
+                        var div = "";
+                        for (var i = 0; i < n; i++) {
+                            div += "<ul style='width:234px;height:350px;text-align:center;background-color:white;margin-left:30px;'  onmouseover='divHoverHiddenCarover(this)' onmouseout='divHoverHiddenCarout(this)'> <li><img style='height:160px;margin-top:10px' src='UsersImage/" + josnData[i].Imagepath + "' /></li><li><label style='margin-right:10px'>" + josnData[i].Tname + "</label><label>" + josnData[i].cateName + "</label><br />"
+                            div += "<label style='width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis'>" + josnData[i].brief + "</label><br /></li><li><label>￥" + josnData[i].price + "</label></li><li style='margin-top:12px;'><label style='width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis'>" + josnData[i].Purchaseqtity + "人购买</label><br /></li><li style='margin-top:12px;'><button style='height:50px;width:234px;border:0px;font-size:19px;display:none' onclick='BtnAddCard(this.value)' value='" + josnData[i].Tid + "'>加入购物车</button></li></ul>"
+                        }
+                        var div2 = $("#DivTeas");
+                        div2.text("");
+                        div2.append(div);
+                    }
+                })
+            }
+        })
+        function BtnAddCard(obj) {
+            if (Uid == null)
+                window.location.href = "Login.html";
+            else {
+                $.ajax({
+                    url: "../Handlers/Add_Cart.ashx",
+                    type: "post",
+                    data: { "Uid": Uid, "Tid": obj },
+                    success: function (data) {
+                        if (data == "true") {
+                            $("#divTop_top").html("");
+                            $("#divTop_top").load("Top.html");
+                            alert("添加购物车成功!")
+                        }
+                    }
+                })
+            }      
+        }
+        function typeButtonClick(cateId)
+        {
+            $.ajax({
+                url: "../Handlers/Teas_GetListByCateid.ashx",
+                type: "post",
+                data:{"cateId":cateId},
+                success: function (data) {
+                    var josnData = $.parseJSON(data);
+                    var n = $.parseJSON(data).length;
+                    var div = "";
+                    for (var i = 0; i < n; i++) {
+                        div += "<ul style='width:234px;height:350px;text-align:center;background-color:white;margin-left:30px;'  onmouseover='divHoverHiddenCarover(this)' onmouseout='divHoverHiddenCarout(this)'> <li><img style='height:160px;margin-top:10px' src='UsersImage/" + josnData[i].Imagepath + "' /></li><li><label style='margin-right:10px'>" + josnData[i].Tname + "</label><label>" + josnData[i].cateName + "</label><br />"
+                        div += "<label style='width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis'>" + josnData[i].brief + "</label><br /></li><li><label>￥" + josnData[i].price + "</label></li><li style='margin-top:12px;'><label style='width:100px;color:#a89d9d;height: 18px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis'>" + josnData[i].Purchaseqtity + "人购买</label><br /></li><li style='margin-top:12px;'><button style='height:50px;width:234px;border:0px;font-size:19px;display:none' onclick='BtnAddCard(this.value)' value='" + josnData[i].Tid + "'>加入购物车</button></li></ul>"
+                    }
+                    var div2 = $("#DivTeas");
+                    div2.text("");
+                    div2.append(div);
+                    if (cateId==0) {
+                            $("#span_text").html("自选商品");
+                    }
+                    else {
+                        $("#span_text").html(josnData[0].cateName);
+                    }
+                }
+            })        
+        }
+    </script>
+    <!--尾部-->
+    <div id="divBottom_bottom" style="width:1350px;height:300px;"></div>
+    <script>
+        $(function () {
+            $("#divBottom_bottom").load("bottom.html");
+           
+        });
+    </script>
+</body>
+</html>

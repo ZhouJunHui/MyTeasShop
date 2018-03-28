@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="divTop_top" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divTop_top").load("Top.html");
+        });
+    </script>
+    <div style="height:1060px;width:1350px;background-color:#e4e4e4;padding-bottom:55px;" id="divMian">
+        <div style="width:300px;padding-left:65px;margin-bottom:15px;font-size:16px;padding-top:15px;">
+            <span>首页/账户中心/我的中心</span>
+        </div>
+        <div style="background-color:white;width:234px;overflow:auto;margin-left:65px;padding-left:30px;height:940px;padding-top:30px">
+            <div><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;<span style="font-size:18px">账户中心</span></div>
+            <ul style="padding-left:25px;margin-top:7px;color:black">
+                <li><a id="MyCenter" onclick="aClick_trank(this.id)">我的中心</a></li>
+                <li><a id="Address" onclick="aClick_trank(this.id)">地址管理</a></li>
+                <li><a id="PersonInfo" onclick="aClick_trank(this.id)">个人信息</a></li>
+            </ul>
+            <br />
+            <div><i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;&nbsp;<span style="font-size:18px">交易中心</span></div>
+            <ul style="padding-left:20px;margin-top:7px;color:black">
+                <li><a id="AllOrder" onclick="aClick_trank(this.id)">我的订单</a></li>
+            </ul>
+            <br />
+            <div><i class="glyphicon glyphicon-lock"></i>&nbsp;&nbsp;&nbsp;<span style="font-size:18px">安全中心</span></div>
+            <ul style="padding-left:20px;margin-top:7px;color:black">
+                <li><a id="UpdatePwd" onclick="aClick_trank(this.id)">修改密码</a></li>
+            </ul>
+            <br />
+            <div><i class="glyphicon glyphicon-credit-card"></i>&nbsp;&nbsp;&nbsp;<span style="font-size:18px">资产中心(正在维护)</span></div>
+            <ul style="padding-left:20px;margin-top:7px;color:black">
+                <li><a>我的红包</a></li>
+                <li><a>积分记录</a></li>
+                <li><a>账户余额</a></li>
+            </ul>
+        </div>
+        <div id="divMyCenter"  >
+            <div style="width:500px;border-radius:500px 0px 0px 500px;height:200px;background-color:white;margin-top:-940px;margin-left:350px;">
+                <div style="width:80px;height:80px;padding:60px 30px;"><img style="width:80px;height:80px;" src="Images/茶人.png" /></div>
+                <div style="width:200px;height:300px;margin-left:125px;margin-top:-85px;">
+                    <label id="lblPhone" style="font-size:20px;"></label>
+                    <br />
+                    <br />
+                    <span style="color:#463c3c">茶人</span>
+                    <div style="width:6px;height:10px;border-right: 6px solid orangered; border-bottom: 6px solid transparent; border-top: 6px solid transparent;margin-top:-15px;margin-left:34px;"></div>
+                    <div style="width:34px;height:20px;border-radius:5px 5px 5px 5px;background-color:orangered;margin-top:-17px;margin-left:40px;"><span style="padding-left:4px;color:white">LV0</span></div>
+                    <br />
+                    <div>
+                        <span>成长值</span><div style="border-radius:10px 10px 10px 10px;width:100px;height:10px;background-color:#e4e4e4;margin-left:55px;margin-top:-15px"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:460px;height:200px;background-color:white;border-left:1.5px dashed #e4e4e4;margin-top:-200px;margin-left:840px;">
+                <div style="padding:40px 100px;">
+                    <span><a>账号余额：0.00</a></span><br />
+                    <span><a>红包个数：0</a></span><br />
+                    <span><a>我的积分：0</a></span><br /><br />
+                    <div style="border:1px solid #a89d9d;color:#b7b6b6;font-size:14px;width:110px;height:30px;line-height:30px">V2以上会员特权</div>
+                    <div style="margin:-30px 110px;background-color:#9d9a9a;width:110px;height:30px;color:white;font-size:14px;text-align:center;line-height:30px"><span>签到的积分</span></div>
+                </div>
+            </div>
+            <div style="width:30px;border-radius:0px 0px 50px 50px;height:15px;background-color:#e4e4e4;margin-top:-200px;margin-left:825px;">
+
+            </div>
+            <div style="width:30px;border-radius:50px 50px 0px 0px;height:15px;background-color:#e4e4e4;margin-top:170px;margin-left:825px;">
+
+            </div>
+            <div style="background-color:#d4d4d4;width:950px;height:50px;margin:20px 350px;line-height:50px">
+                <span style="font-size:16px;padding-left:20px">会员中心</span>
+            </div>
+            <div id="divNoOrder" style="background-color:white;width:950px;margin:-20px 350px">
+                <div style="padding-left:350px"><img src="Images/会员专享.png" style="width:200px;height:120px"/></div>
+            </div>
+            <div style="background-color:#d4d4d4;width:950px;height:50px;margin:50px 350px;line-height:50px">
+                <span style="font-size:16px;padding-left:20px">我的特权</span>
+            </div>
+            <div style="background-color:white;width:950px;margin:-50px 350px">
+                <div><img style="width:950px;height:470px" src="Images/我的特权.jpg" /></div>
+            </div>
+        </div>
+        <div id="divAddress" style="margin:-940px 350px;width:970px;height:940px;background-color:white;overflow:auto" hidden>
+           <!--<br /><br />  
+            <span style="font-size:18px;padding-left:40px;position:absolute">收货地址</span>   
+            <ul style="margin-top:50px;margin-left:40px;float:left;height:190px;width:270px;border:1px solid #a89d9d;text-align:center">
+                <li style="padding-top:30px;margin-left:-100px">
+                    <label style="font-size:16px">张三 </label>&nbsp;<label style="color:#757575"> 13168698809</label>
+                    <br /><br />
+                    <div style="margin-left:120px;font-size:16px;overflow:auto;white-space:normal;width:230px;height:40px;color:#757575">但爱逗比内大宝宝U币疤打不吧U币德百但爱逗比内大宝宝U币疤打不吧U币德百但爱逗比内大宝宝U币疤打不吧U币德百但爱逗比内大宝宝U币疤打不吧U币德百但爱逗比内大宝宝U币疤打不吧U币德百</div>
+                     <br /><br />
+                    <a href="#" style="margin-left:100px;">修改</a>
+                    <a href="#" style="margin-left:50px;">删除</a>
+                </li>
+            </ul>-->
+            <script>
+                function LoadAddress()
+                {
+                    $.ajax({
+                        url: "../Handlers/GetList_Receivingaddress.ashx",
+                        type: "post",
+                        data: { "Uid": window.sessionStorage.getItem("Uid") },
+                        success: function (data) {
+                            var josnData = $.parseJSON(data);
+                            var n = $.parseJSON(data).length;
+                            var div = "<br /><br /><span style='font-size:18px;padding-left:40px;position:absolute'>收货地址</span>";
+                            for (var i = 0; i < n; i++) {
+                                div += " <ul style='margin-top:50px;margin-left:40px;float:left;height:190px;width:270px;border:1px solid #a89d9d;text-align:center'><li style='padding-top:30px;margin-left:-100px'><label style='font-size:16px'>" + josnData[i].Rname + "</label>&nbsp;<label style='color:#757575'>" + josnData[i].Phone + "</label><br /><br /><div style='margin-left:120px;font-size:16px;overflow:auto;white-space:normal;width:230px;height:40px;color:#757575'>" + josnData[i].Address + "</div><br /><br /><a href='#' style='margin-left:100px;' title='" + josnData[i].RecId + "' onclick='Update_Address_click(this.title)'>修改</a><a href='#' style='margin-left:50px;' title='" + josnData[i].RecId + "' onclick='Delete_Address_click(this.title)'>删除</a></li></ul>";
+                            }
+                            div += "<ul style='padding-top:50px;padding-left:40px;float:left'><li style='border:1px solid #a89d9d;width:270px;height:190px;line-height:190px;text-align:center'><img src='Images/AdressAdd.png' onclick='Add_Address_click()'/><p style='margin-top:-150px' onclick='Add_Address_click()'>添加新地址</p></li></ul>";
+                            var div2 = $("#divAddress");
+                            div2.html("");
+                            div2.prepend(div);
+                        }
+                    })
+                }
+                $(function () {
+                    LoadAddress();
+                })
+                function Add_Address_click() {
+                    $("#divAddress").css("z-Index", "1002")
+                    $("#div_Address_Info").css("display", "block")
+                    $("#txtAddress_Rname").val("");
+                    $("#lblAddress_RecId").html("");
+                    $("#txtAddress_Phone").val("");
+                    $("#txtAddress_Address").val("");
+                    $("#btn_Baocun_Address").html("添加");
+                    $('#divAddress')[0].scrollIntoView(true);
+
+                }
+                function Update_Address_click(obj) {
+                    $("#divAddress").css("z-Index", "1002")
+                    $("#div_Address_Info").css("display", "block")
+                    $("#btn_Baocun_Address").html("修改");
+                    $.ajax({
+                        url: "../Handlers/GetAddress_ByReceid.ashx",
+                        type: "post",
+                        data: { "RecId": obj },
+                        success: function (data) {
+                            var jsonData = $.parseJSON(data);
+                            $("#txtAddress_Rname").val(jsonData.Rname);
+                            $("#lblAddress_RecId").html(jsonData.RecId);
+                            $("#txtAddress_Phone").val(jsonData.Phone);
+                            $("#txtAddress_Address").val(jsonData.Address);
+                            $('#divAddress')[0].scrollIntoView(true);
+                        }
+                    })
+                }
+                function Delete_Address_click(obj) {
+                    if (confirm("你确定要删除这条收货地址？")) {
+                        $.ajax({
+                            url: "../Handlers/delete_Receivingaddress.ashx",
+                            type: "post",
+                            data: { "recId": obj },
+                            success: function (data) {
+                                if (data == "true")
+                                    LoadAddress();
+                                $('#divAddress')[0].scrollIntoView(true);
+                            }
+                        })
+                    }
+                }
+                function Baocun_AddressInfo() {
+                    var re = /^0?1[3|4|5|8][0-9]\d{8}$/
+                    if ($("#txtAddress_Rname").val().length >= 10 || $("#txtAddress_Rname").val().length<0)
+                        alert("收货人不能为空并且不能大于五位")
+                    else if ($("#txtAddress_Phone").val().length > 11 || $("#txtAddress_Phone").val().length<0)
+                         alert("手机号码不能为空并且不能大于11位")
+                    else if ($("#txtAddress_Address").val().length < 0 || $("#txtAddress_Address").val().length<0)
+                        alert("收货地址不能为空并且不能大于120位")
+                   else if (!re.test($("#txtAddress_Phone").val())) 
+                             alert("手机号码格式不正确");
+                    else {
+                        if ($("#btn_Baocun_Address").html() == "修改") {
+                            $.ajax({
+                                url: "../Handlers/Update_Receivingaddress.ashx",
+                                type: "post",
+                                data: { "Rname": $("#txtAddress_Rname").val(), "RecId": $("#lblAddress_RecId").html(), "Phone": $("#txtAddress_Phone").val(), "Address": $("#txtAddress_Address").val() },
+                                success: function (data) {
+                                    if (data == "true") {
+                                        $('#divAddress').css('z-Index', '999');
+                                        $('#div_Address_Info').css('display', 'none')
+                                        LoadAddress();
+                                        $('#divAddress')[0].scrollIntoView(true);
+                                    }
+                                }
+                            })
+                        }
+                        else {
+                            $.ajax({
+                                url: "../Handlers/Add_Receivingaddress.ashx",
+                                type: "post",
+                                data: { "Rname": $("#txtAddress_Rname").val(), "Uid": window.sessionStorage.getItem("Uid"), "Phone": $("#txtAddress_Phone").val(), "Address": $("#txtAddress_Address").val() },
+                                success: function (data) {
+                                    if (data == "true") {
+                                        $('#divAddress').css('z-Index', '999');
+                                        $('#div_Address_Info').css('display', 'none')
+                                        LoadAddress();
+                                        $('#divAddress')[0].scrollIntoView(true);
+                                    }
+                                }
+                            })
+                        }
+                    }
+                   
+                }
+            </script>
+           
+        </div>
+        <div style="margin-left:350px;width:970px;height:500px;border:1px solid;display:none;position:absolute;text-align:center;padding-top:100px;padding-left:230px;background-color:black;background: rgba(0, 0, 0, 0.5);z-index:1000" id="div_Address_Info">
+             <div style="width:500px;background-color:white;">
+                 <br /><br /><br />
+                 <label>收 &nbsp;货 &nbsp;人：</label>
+                 <label id="lblAddress_RecId" hidden>收货地址Id：</label>
+                 <input type="text" id="txtAddress_Rname"/>
+                 <br /><br />
+                 <label >手机号码：</label>
+                 <input type="text" id="txtAddress_Phone"/>
+                 <br /><br />
+                 <label >地  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  址：</label>
+                 <input type="text" id="txtAddress_Address"/>
+                 <br /><br /><br />
+                 <button class="btn btn-default" style="margin-right:50px" id="btn_Baocun_Address" onclick="Baocun_AddressInfo()">保存</button>
+                 <button class="btn btn-default" id="btn_Change_Address" onclick="$('#divAddress').css('z-Index', '999');$('#div_Address_Info').css('display', 'none')">取消</button>
+                 <br /><br /><br /><br />
+             </div>
+           
+        </div>
+        <div id="divPersonInfo" style="margin:-940px 350px;width:950px;height:940px;background-color:white;padding-left:40px" hidden>
+                <br /><br />
+                <span style="font-size:18px;">个人信息</span>
+                <br />
+                <br />
+                <br />
+                <label>用户头像：</label>
+                <img alt="暂无照片" src="" onclick="show_file_window()" class="img_radius" id="ImgPersonInfo_picture" style="width:70px;height:70px">
+                <input type="file"  style="display:none" id="upload_file" onchange="javascript:validate_img(this)">
+                <script>
+                            //点击图片触发隐藏的图片上传框
+                             function show_file_window() {        
+                                 $("#upload_file").click();
+                             }
+                            //判断图片格式和大小
+                             function validate_img(ele) {
+                                 // 返回 KB，保留小数点后两位
+                                 var file = ele.value;
+                                if (!/.(gif|jpg|jpeg|png|GIF|JPG|bmp)$/.test(file)) {
+                                     alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+                                     return false;
+                                 } else {
+                                     if (((ele.files[0].size).toFixed(2)) >= (100 * 1024)) {
+                                         alert("请上传小于100kb的图片");
+                                         return false;
+                                     }
+                                     else {
+                                         var pic = document.getElementById("ImgPersonInfo_picture"),
+                                         file = document.getElementById("upload_file");
+                                         var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+                                         // gif在IE浏览器暂时无法显示
+                                         if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+                                             alert("图片的格式必须为png或者jpg或者jpeg格式！");
+                                             return;
+                                         }
+                                         var isIE = navigator.userAgent.match(/MSIE/) != null,
+                                         isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+                                         if (isIE) {
+                                             file.select();
+                                             var reallocalpath = document.selection.createRange().text;
+                                             // IE6浏览器设置img的src为本地路径可以直接显示图片
+                                             if (isIE6) {
+                                                 pic.src = reallocalpath;
+                                             } else {
+                                                 // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                                                 pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                                                 // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                                                 pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                                             }
+                                         } else {
+                                             html5Reader(file);
+                                         }
+                                     }
+                                 }
+                             }
+                    function html5Reader(file){
+                        var file = file.files[0];
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = function(e){
+                            var pic = document.getElementById("ImgPersonInfo_picture");
+                            pic.src = this.result;                  
+                        }
+                    }
+                </script>
+                <br />
+                <br />
+                <label>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
+                <input type="text" id="txtUpdateName" style="width:202px;height:40px;" placeholder="&nbsp;&nbsp;&nbsp;昵称" />
+                <br /><br /><br />
+                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                <input id="sexNan" style="margin-left:10px" type="radio" name="Sex" value="男" checked="checked" /><span>男</span>
+                <input id="sexNv" style="margin-left:60px" type="radio" name="Sex" value="女" /><span>女</span>
+                <br /><br /><br />
+                <label>手机号码：</label>
+                <input id="txtUpdatePhone" type="text" style="width:202px;height:40px;" placeholder="&nbsp;&nbsp;&nbsp;手机号码" />
+                <br /><br /><br />
+                <label>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</label>
+                <input id="txtUpdateBirth" type="date" style="width:202px;height:40px;" />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <input onclick="BtnBaoCun_Click()" style="background-color:orangered;width:120px;height:38px;margin-left:75px;border:0px" type="button" id="btnBaoCun" value="保存" /> 
+            <script>
+                var re = /^0?1[3|4|5|8][0-9]\d{8}$/
+                var el =document.getElementById("upload_file");
+                var data = new FormData();
+                data.append("后台取得文件的key", el.files[0]);
+                   function BtnBaoCun_Click() {
+                       if ($("#txtAddress_Phone").val().length > 11 || $("#txtAddress_Phone").val().length < 0)
+                           alert("手机号码不能为空并且不能大于11位")
+                       else if (!re.test($("#txtUpdatePhone").val()))
+                            alert("手机号码格式不正确！！")
+                        else {
+                            $.ajax({
+                                url: "../Handlers/Update_personalInfo.ashx",
+                                data: { "Uid": window.sessionStorage.getItem("Uid"), "Uname": $("#txtUpdateName").val(), "Sex": $("#divPersonInfo input[name='Sex'][checked]").val(),
+                                    "Phone": $("#txtUpdatePhone").val(),"ImgPath":"12321","Birthday":$("#txtUpdateBirth").val() },
+                                type: "post",
+                                dataType: "json",
+                                success: function (data) {
+                                    alert("保存成功");
+                                }
+                            })     
+                        }
+                    }
+            </script>
+</div>
+        <script>
+            $(function () {
+               
+                if (window.sessionStorage.getItem("Uid") == null) {
+                    window.location.href = "Login.html";
+                }
+                else {
+                    $.ajax({
+                        url: "Handlers/Users_PersonInfo_GetListByUid.ashx",
+                        type: "post",
+                        data: { "Uid": window.sessionStorage.getItem("Uid") },                      
+                        success: function (data) {
+                            var jsondata = $.parseJSON(data);
+                            $("#lblPhone").html(jsondata.Phone.substr(0, 3) + "****" + jsondata.Phone.substr(7, 4));
+                            $("#UpdateimgPath").attr("src", "Images/" + jsondata.ImgPath);
+                            $("#txtUpdateName").val(jsondata.Uname);
+                            $("#txtUpdatePhone").val(jsondata.Phone);
+                            jsondata.Birthday.replace(/Date\([\d+]+\)/, function (a) { eval("d = new " + a) });
+                            var date = d.toLocaleDateString();
+                            arr = date.split("/");
+                            $.each(arr, function (i,obj) {
+                                if (obj.length<2) 
+                                    arr[i] = "0" + arr[i]    
+                            })
+                            var portableList = arr.join("-");
+                            $("#txtUpdateBirth").val(portableList);
+                            $("#divPersonInfo input[type='radio'][value='" + jsondata.Sex + "']").attr("checked", "checked");
+                        }
+                    })
+                }
+               
+            })
+        </script>
+        <div id="divAllOrder"style="margin:-940px 350px;width:950px;height:940px;background-color:white;padding-left:40px;overflow:auto" hidden>
+            <br /><br />
+            <span style="font-size:2em;">全部订单</span>
+            <div id="div_OrderNull" style="line-height:500px;text-align:center">
+                <img src="Images/暂无购买记录.jpg"  />
+            </div>
+            <div id="divAllOrder_chlid">
+
+            </div>
+            <br /><br />
+                
+            <style>
+                #OrderDetal_All label{
+                    margin-right:70px;
+                }
+                #OrdersInfo_Bottom label{
+                    margin-right:50px
+                }
+                #OrderDetal_All{
+                    margin-bottom:10px;
+                     padding-bottom:10px;
+                    border-bottom:0.5px dashed;
+                }
+                .Txt_OverHidden{
+                         width:300px;
+                         overflow: hidden;
+                         white-space:nowrap;
+                         text-overflow:ellipsis;
+                         height:35px;
+                         line-height:35px;
+                }
+            </style>    
+            <script>
+                $(function () {
+                        Load_Order();
+                });
+                function Delete_Order(obj)
+                {
+                    var ordernumber = $(obj).parent().parent().children().eq(0).html();
+                    if (confirm("确认删除此订单！删除不可找回！！")) {
+                        $.ajax({
+                            url: "Handlers/Delete_OrdersByOrdernumber.ashx",
+                            data: { "Ordernumber": ordernumber },
+                            type: "POST",
+                            success: function (data) {
+                                if (data == "true") {
+                                    window.location.href = "Myaccount.html";
+                                }
+                                else
+                                    alert(data);
+                            }
+                        })
+                    }
+                }
+                function Load_Order()
+                {
+                    $("#divAllOrder_chlid").html("");
+                    var div = "";
+                    $.ajax({
+                        url: "Handlers/GetList_Orders.ashx",
+                        data: { "Uid": window.sessionStorage.getItem("Uid") },
+                        type: "POST",
+                        async: false,
+                        success: function (Orderdata) {
+                            
+                            var jsondata = $.parseJSON(Orderdata);
+                            $.each(jsondata, function (index, info) {
+                                info.Ordertime.replace(/Date\([\d+]+\)/, function (a) { eval("d = new " + a) });
+                                var date = d.toLocaleDateString();
+                                div += " <div style='border:1px solid;font-size:1.2em;margin-right:35px'>"
+                                div += "订单号：<label style='margin-right:200px'>" + info.Ordernumber + "</label>"
+                                div += "下单时间：<label>" + date + "</label>"
+                                $.ajax({
+                                    url: "Handlers/GetList_OrderDetailedByOrId.ashx",
+                                    data: { "OrId": info.OrId },
+                                    type: "POST",
+                                    async: false,
+                                    success: function (OoderDetadata) {
+                                        var jsondata2 = $.parseJSON(OoderDetadata);
+                                        $.each(jsondata2, function (Index2, Info2) {
+                                            div += "<div style='font-size:0.8em;' id='OrderDetal_All'>"
+                                            div += "<img style='width:130px;height:130px'  src='UsersImage/" + Info2.Imagepath + "'/> <label class='Txt_OverHidden'>" + Info2.Tname + "&nbsp;" + Info2.Netcontent + "克&nbsp;" + Info2.cateName + "&nbsp;" + Info2.brief + "</label>";
+                                            div += "<label>￥" + Info2.price + "</label><label>X" + Info2.Number + "</label></div>";
+                                        })
+                                    }
+                                })
+                                div += " <div id='OrdersInfo_Bottom' style='border-top:1px solid;padding-top:20px;'>"
+                                div += "收货地址：<label>" + info.Address + "</label>"
+                                div += "收货人：<label>" + info.Rname + "</label>"
+                                div += "总价：<label style='margin-right:88px'>￥" + info.Total + "</label>"
+                                div += "<button class='btn btn-danger' onclick='Delete_Order(this)'>删除此订单</button> </div></div >"
+                            })
+                            $("#div_OrderNull").attr("hidden", true)
+                            $("#divAllOrder_chlid").append(div);
+                        }
+                    });
+                    if (div=="") {
+                        $("#div_OrderNull").attr("hidden", false)
+                    }
+                }
+            </script>
+        </div>
+        <div id="divUpdatePwd"style="margin:-940px 350px;width:950px;height:940px;background-color:white;padding-left:40px" hidden>
+            <br /><br />
+            <span style="font-size:18px;">修改密码</span>
+            <div style="padding-top:50px">
+                <label style="font-size:16px;">原密码</label><br /><br />
+                <input id="txt_PwdOld" style="width:202px;height:40px;" type="password" placeholder="&nbsp;&nbsp;&nbsp;输入原密码"/><br /><br />
+                <label style="font-size:16px;">新密码</label><br /><br />
+                <input id="txt_PwdNew1"style="width:202px;height:40px;" type="password" placeholder="&nbsp;&nbsp;&nbsp;输入新密码" /><br /><br />
+                <input id="txt_PwdNew2"style="width:202px;height:40px;" type="password" placeholder="&nbsp;&nbsp;&nbsp;重复新密码" /><br /><br /><br /><br />
+                <input onclick="btnUpdatePwd()" style="background-color:orangered;width:120px;height:38px;margin-left:0px;border:0px" type="button" value="确认" />
+            </div>
+        </div>
+    </div>
+    <script>
+        function btnUpdatePwd() {
+            var txt_PwdOld = $("#txt_PwdOld").val();
+            var txt_PwdNew1 = $("#txt_PwdNew1").val();
+            var txt_PwdNew2 = $("#txt_PwdNew2").val();
+            var Uid = window.sessionStorage.getItem("Uid");
+            if (txt_PwdNew1 == txt_PwdNew2) {
+                $.ajax({
+                    url: "Handlers/GetList_UserByUid.ashx",
+                    data: { "Uid": Uid},
+                    type: "POST",
+                    success: function (data) {
+                        var jsondata = $.parseJSON(data);
+                        if (jsondata.Pwd==txt_PwdOld) {
+                            $.ajax({
+                                url: "Handlers/UpdatePwd_User.ashx",
+                                data: { "Uid": Uid, "PwdNew": txt_PwdNew2 },
+                                type: "POST",
+                                success: function (data) {
+                                    if (data == "true") {
+                                        alert("密码修改成功！请重新登陆！")
+                                        window.sessionStorage.removeItem("Uid");
+                                        window.location.href = "Login.html"
+                                    }
+                                }
+                            })
+                        }
+                        else
+                            alert("原密码不正确！")
+                    }
+                })
+            }
+            else
+                alert("两次密码不一致！")
+        }
+    </script>
+    <style>
+        #divMian a{
+            color:black;
+        }
+        #divMian ul li{
+            margin-bottom:15px;
+        }
+        #divMian a:hover{
+            color:orangered;
+        }
+    </style>
+    <script>
+        function aClick_trank(obj)
+        {
+            var iddiv = "#div" + obj;
+            $("#divMyCenter").attr("hidden", true);
+            $("#divAddress").attr("hidden", true);
+            $("#divPersonInfo").attr("hidden", true);
+            $("#divAllOrder").attr("hidden", true);
+            $("#divUpdatePwd").attr("hidden", true);
+            $(iddiv).attr("hidden", false);
+        }
+    </script>
+    <div id="divBottom_bottom" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divBottom_bottom").load("bottom.html");
+        });
+    </script>
+</body>
+</html>

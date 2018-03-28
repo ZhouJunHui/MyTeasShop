@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="divTop_top" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divTop_top").load("Top.html");
+        });
+    </script>
+    <div style="background-color:#f5f5f5;padding:40px 50px;padding-bottom:50px;">
+        <div style="background-color:white;width:1300px;" >
+            <br /><br />
+            <span style="font-size:18px;margin-left:40px">收货地址</span>
+            <div id="divAddress" style="width:1300px;height:340px;">
+                <div id="divAddress2" style="width:1000px;height:300px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis">
+                    <!--<ul style='margin-top:50px;margin-left:40px;float:left;height:190px;width:270px;border:1px solid black;text-align:center'><li  onclick="aa()" style='padding-top:30px;margin-left:-100px'><label style='font-size:16px'>" + josnData[i].Rname + "</label>&nbsp; <label style='color:#757575'>" + josnData[i].Phone + "</label><br /><br /><div style='margin-left:120px;font-size:16px;overflow:auto;white-space:normal;width:230px;height:40px;color:#757575'>" + josnData[i].Address + "</div><br /><br /><a href='#' style='margin-left:200px;' title='" + josnData[i].RecId + "' onclick='Update_Address_click(this.title)'>修改</a></li></ul>;
+                    <ul style='margin-top:50px;margin-left:40px;float:left;height:190px;width:270px;border:1px solid black;text-align:center'><li style='padding-top:30px;margin-left:-100px'><label style='font-size:16px'>" + josnData[i].Rname + "</label>&nbsp; <label style='color:#757575'>" + josnData[i].Phone + "</label><br /><br /><div style='margin-left:120px;font-size:16px;overflow:auto;white-space:normal;width:230px;height:40px;color:#757575'>" + josnData[i].Address + "</div><br /><br /><a href='#' style='margin-left:200px;' title='" + josnData[i].RecId + "' onclick='Update_Address_click(this.title)'>修改</a></li></ul>;
+                    <ul style='margin-top:50px;margin-left:40px;float:left;height:190px;width:270px;border:1px solid black;text-align:center'><li style='padding-top:30px;margin-left:-100px'><label style='font-size:16px'>" + josnData[i].Rname + "</label>&nbsp; <label style='color:#757575'>" + josnData[i].Phone + "</label><br /><br /><div style='margin-left:120px;font-size:16px;overflow:auto;white-space:normal;width:230px;height:40px;color:#757575'>" + josnData[i].Address + "</div><br /><br /><a href='#' style='margin-left:200px;' title='" + josnData[i].RecId + "' onclick='Update_Address_click(this.title)'>修改</a></li></ul>;-->
+                </div>
+                <script>
+                    $(function () {
+
+                  
+                    $.ajax({
+                        url: "../Handlers/GetList_Receivingaddress.ashx",
+                        type: "post",
+                        data: { "Uid": window.sessionStorage.getItem("Uid") },
+                        success: function (data) {
+                            var josnData = $.parseJSON(data);
+                            var n = $.parseJSON(data).length;
+                            var div = "";
+                            for (var i = 0; i < n; i++) {
+                                div += "<ul onclick='Click_btnBorder_color(" + i + ")' style='margin-top:50px;margin-left:40px;float:left;height:190px;width:270px;border:1px solid black;text-align:center'><li style='padding-top:30px;margin-left:-90px'><label style='font-size:16px'>" + josnData[i].Rname + "</label>&nbsp; <label style='color:#757575'>" + josnData[i].Phone + "</label><br /><br /><div style='margin-left:120px;font-size:16px;overflow:auto;white-space:normal;width:230px;height:40px;color:#757575;'>" + josnData[i].Address + "</div><br /><br /><a href='#' style='margin-left:200px;' title='" + josnData[i].RecId + "' onclick='Update_Address_click(this.title)' hidden>修改</a></li></ul>";
+                            }
+                            var div2 = $("#divAddress2");
+                           // div2.html("");
+                            div2.prepend(div);
+                        }
+                        })
+                    })
+                    function Click_btnBorder_color(i) {
+                        $("#divAddress2 ul").css("border", "1px solid");
+                        $("#divAddress2 ul:eq(" + i + ")").css("border", "1px solid");
+                        $("#divAddress2 ul:eq(" + i + ")").css("border-color", "orangered");
+                    };
+                </script>
+            </div>
+          
+            <div id="divPaymethod">
+                <span style="font-size:18px;margin-left:40px">支付方式(本店暂不支持网上付款)</span>
+                <br /><br />
+                <div style="border:1px solid orangered;color:orangered;width:250px;height:50px;margin-left:40px;line-height:50px;text-align:center">
+                    货到付款
+                </div>
+            </div>
+            <br /><br /><br />
+            <div id="distributionmethod" style="overflow:auto">
+                <span style="font-size:18px;margin-left:40px">配送方式</span>
+                <br /><br />
+                <div style="border:1px solid;width:250px;height:50px;margin-left:40px;line-height:50px;text-align:center;float:left">
+                    店家发货(￥0.00)
+                </div>
+                <div style="border:1px solid;width:250px;height:50px;margin-left:40px;line-height:50px;text-align:center;float:left">
+                    申通快递(￥0.00)
+                </div>
+                <div style="border:1px solid;width:250px;height:50px;margin-left:40px;line-height:50px;text-align:center;float:left">
+                    顺丰快递(￥0.00)
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    if (window.sessionStorage.getItem("Uid")==null) {
+                        window.location.href = "Login.html";
+                    }
+                    $("#distributionmethod div").click(function () {
+                        $("#distributionmethod div").css("border", "1px solid");
+                        $("#distributionmethod div").css("color", "black");
+                        $(this).css("border", "1px solid orangered");
+                        $(this).css("color", "orangered");
+                    })
+                })
+            </script>
+            <style>
+                #distributionmethod div:hover{
+                      border:1px solid orangered;
+                      color:orangered;
+                }
+            </style>
+            <br /><br /><br />
+            <div div="divTeasInfo">
+                <span style="font-size:18px;margin-left:40px">商品信息</span><a href="Cart.html" style="width:150px;float:right">返回购物车>>></a> 
+                <hr />
+                <span style="font-size:15px;margin-left:240px">商品名称</span>
+                <span style="font-size:15px;margin-left:540px">价格</span>
+                <span style="font-size:15px;margin-left:140px">数量</span>
+                <span style="font-size:15px;margin-left:140px">小计</span>
+                <hr />
+                <div id="divOrderTeas">
+                   
+                </div>
+                <script>
+                    var Tids = window.sessionStorage.getItem("JsonCart")
+                    var Number1 = window.sessionStorage.getItem("JsonNumber");
+                    var Tids_No = Tids.split(",")
+                    var Number_No = Number1.split(",")
+                    $(function () {
+                        for (var i = 0; i < Tids_No.length; i++) {
+                            $.ajax({
+                                url: "Handlers/GetList_TeasByTid.ashx",
+                                data: { "Tid": Tids_No[i], "Number": Number_No[i] },
+                                type: "POST",
+                                async: false,
+                                success: function (data) {
+                                    var jsondata = $.parseJSON(data);
+                                    var div = "<ul>";
+                                    div += "<li style='border-bottom:1px solid;margin-top:20px;padding-bottom:20px;'><img src='UsersImage/" + jsondata.Imagepath + "' style='width:70px;height:56px;margin-left:60px;' />";
+                                    div += "<span style='margin-left:40px;width:400px;position:absolute;overflow: hidden;white-space:nowrap;text-overflow:ellipsis;'>" + jsondata.brief + "</span>";
+                                    div += "<span style='margin-left:40px;margin-top:20px;width:400px;position:absolute'>" + jsondata.Tname + "</span><span style='margin-left:700px;margin-top:20px;width:400px;position:absolute'>￥" + jsondata.price + "</span>";
+                                    div += "<span class='Number_No1' style='margin-left:900px;margin-top:20px;width:400px;position:absolute'>" + jsondata.Number + "</span>";
+                                    div += "<span  class='Number_No2' style='margin-left:1050px;margin-top:20px;width:400px;position:absolute'>￥" + (jsondata.Number * jsondata.price).toFixed(2) + "</span><Label hidden>" + jsondata.Tid + "</Label></div> </li></ul>";
+                                    var divCardMain = $("#divOrderTeas");
+                                    divCardMain.append(div);
+                                }
+                            })
+                        }
+                        var Number_NoTo2 = document.getElementsByClassName("Number_No2");
+                        var lblMoney = 0;
+                        $.each(Number_NoTo2, function (index, Info) {
+                            var priceNoTo2 = (Number)($(Info).html().substring(1));
+                            lblMoney += priceNoTo2;
+                        })
+                        $("#lblMoney").html("￥" + lblMoney.toFixed(2));
+                        $("#lblYinfuMoney").html("￥" + lblMoney.toFixed(2));
+                    });
+
+
+                    function BtnAdd_Order(){
+                        var Address = $("#divAddress2 ul");
+                        var ShopJiao = $("#distributionmethod div")
+                        var CartsShop=$("#divOrderTeas ul");
+                        var AddressId = "";
+                        var KuDiInfo = "";
+                        var count = 0;
+                        var count_Ku = 0;
+                        var Ordersuccess = 0;
+                        var OrderId = "";
+                        $.each(Address, function (Index,Info) {
+                            if ($(Info).css("border-color")=="rgb(255, 69, 0)") {
+                                AddressId = ($(Info).children().children().next().eq(6).prop("title"));
+                                count++;
+                            }
+                        })
+                        if (count==0) 
+                            alert("请选择收货地址！")
+                        $.each(ShopJiao, function (Index, Info) {
+                            if ($(Info).css("color") == "rgb(255, 69, 0)") {
+                                KuDiInfo = $(Info).html();
+                                count_Ku++;
+                            }
+                        })
+                        if (count_Ku==0) 
+                            alert("请选择配送方式!")
+                        if (count != 0 && count_Ku != 0) {
+                            $.ajax({
+                                url: "Handlers/Add_Orders.ashx",
+                                data: { "Uid": window.sessionStorage.getItem("Uid"), "Total": $("#lblYinfuMoney").html().substring(1), "RecId": AddressId },
+                                type: "POST",
+                                async: false,
+                                success: function (data) {
+                                    var jsondata = $.parseJSON(data);
+                                    OrderId = jsondata;
+                                }
+                            });
+                            var Tids_string = "";
+                            var Number_string = "";
+                            var Price_string = "";
+                            for (var i = 0; i < Tids_No.length; i++) {
+                                if (i==Tids_No.length-1) 
+                                {
+                                    Price_string += $(CartsShop[i]).children().children().next().eq(2).html().substring(1)
+                                    Tids_string += Tids_No[i];
+                                    Number_string += Number_No[i];
+                                }
+                                else
+                                {
+                                    Price_string += Price_string += $(CartsShop[i]).children().children().next().eq(2).html().substring(1) + ",";
+                                    Tids_string += Tids_No[i] + ",";
+                                    Number_string += Number_No[i] + ",";
+                                }
+                            }
+                                $.ajax({
+                                    url: "Handlers/Add_OrDetaId.ashx",
+                                    data: { "OrId": OrderId, "Tid": Tids_string, "Number": Number_string, "Price": Price_string },
+                                     type: "POST",
+                                     async: false,
+                                     success: function (data) {
+                                         Ordersuccess++;
+                                       }
+                                     });
+                                    $.ajax({
+                                      url: "Handlers/Delete_Cart.ashx",
+                                      data: { "Uid": window.sessionStorage.getItem("Uid"), "Tid": Tids_string },
+                                      type: "POST",
+                                      async: false,
+                                      success: function (data) {
+                                         }
+                                   });
+                            if (Ordersuccess > 0) {
+                                alert("下单成功！等待商家接单！")
+                                window.sessionStorage.removeItem("JsonCart")
+                                window.sessionStorage.removeItem("JsonNumber")
+                                window.location.href = "Cart.html";
+                            }
+                            }
+                           
+                        }
+                </script>
+                <div id="divZongMoney">
+                    <span>金额总计：</span><label id="lblMoney">￥0.00</label><br /><br />
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运费：</span><label  id="lblYunfeiMoney">￥0.00</label><br /><br />
+                    <span>应付金额：</span><label  id="lblYinfuMoney">￥0.00</label>
+                    <hr />
+                    <button onclick="BtnAdd_Order()" style="margin-left:1050px;width:200px;margin-top:10px;border:0px;background-color:orangered;margin-bottom:30px;height:50px">提交订单</button>
+                </div>
+                <style>
+                    #divZongMoney span{
+                        margin-left:1100px;
+                        margin-right:20px;
+                    } 
+                </style>
+            </div>
+           
+        </div>
+    </div>
+   
+   
+    <!--尾部-->
+    <div id="divBottom_bottom" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divBottom_bottom").load("bottom.html");
+        });
+    </script>
+</body>
+</html>

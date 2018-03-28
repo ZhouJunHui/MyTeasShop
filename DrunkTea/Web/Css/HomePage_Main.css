@@ -1,0 +1,120 @@
+﻿  *{
+            padding:0px;
+            margin:0px;
+        }
+        #divTop{
+            background-color:#342f2f;
+            width:1350px;
+            height:45px;
+            border:0px;
+            line-height:45px;
+        }
+        #divTop a{
+            font-size:13px;
+            margin-left:35px;
+            color:#a89d9d;
+        }
+        #divTop a:hover,a:hover{ 
+            text-decoration:none;
+            color:orangered;
+        }
+        #divTop ul li{
+            text-align:center;
+            float:right;
+            list-style:none
+        }
+        .a_marlef30{
+            margin-left:30px;
+            color:black;
+        }
+        .content2 {
+    margin-top:150px;
+    width:1000px;
+}
+#DivTeas ul{
+    margin-top:10px;
+    float:left;
+        }
+#DivTeas ul:hover {
+    box-shadow: 0px 20px 30px rgba(34, 25, 25, 0.2);
+}
+.body_background {
+
+    height:400px;
+    width:992px;
+    left:300px;
+    position:relative;
+    cursor:pointer;
+}
+.body_background img{
+
+    height:400px;
+    width:992px;
+
+}
+
+.body_background2 {
+    width:100px;
+    height:10px;
+    position:absolute;
+    bottom:0px;
+    right:0px;
+
+}
+
+.body_background2 li{
+    width:10px;
+    height:10px;
+    background:rgba(0,0,0,0.8);
+    border:2px solid #666;
+    border-color:rgba(255,255,255,0.4);
+    border-radius:50%;
+    float:left;
+    margin-left:5px;
+    cursor:pointer;
+}
+ .body_background2 li:hover {
+        background:rgba(255,255,255,0.7);
+        border-color:rgba(0,0,0,0.4);
+    }
+
+ .body_background2 li.active{
+        background:rgba(255,255,255,0.7);
+        border-color:rgba(0,0,0,0.4);
+    }
+.pic{
+    position:relative;
+}
+.pic li{
+    position:absolute;
+    display:none;
+}
+li {
+           list-style:none
+        }
+/*-----------------------------------------------*/
+#DivTypeTeas dl dd button{
+    color:white;
+     font-size:18px;
+     margin-bottom:18px;
+     width:234px;
+     height:39px;
+}
+#DivTypeTeas dd:hover,#DivTypeTeas dl dd button:hover,#DivTypeTeas dl dd div label:hover{
+    background-color:orangered;
+    text-decoration:none;
+}
+#DivTypeTeas{
+    margin-top:-409px;
+    margin-left:50px;
+    height:398px;
+}
+#DivImgList2 ul li{
+   float:right;list-style:none;
+   padding-right:20px;
+}
+#DivImgList2{
+    width:1350px;
+
+}
+/*---------------------*/

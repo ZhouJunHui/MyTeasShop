@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="divTop_top" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divTop_top").load("Top.html");
+        });
+    </script>
+    <div style="width:1350px;background-color:#f5f5f5;padding:40px 60px 60px 60px" >
+        <div id="divOrderNull" style="width:1000px;background-color:white;" hidden>
+            <img src="Images/emptyCart.png" />
+        </div>
+        <div id="divCardhead" style="background-color:white;line-height:10px;height:70px;padding-left:10px">
+            <br /><br />
+            <label><input id="chk_AllChecked" onchange='Chk_AllCheck(this)' type="checkbox" class="LabelCheck_ys"></label>
+            <span  style="font-size:16px;margin-top:10px;position:absolute">全选</span>
+            <span style="margin-left:350px;width:530px" class="checkSpan">商品名称</span>
+            <span style="margin-left:750px" class="checkSpan">价格</span>
+            <span style="margin-left:900px" class="checkSpan">数量</span>
+            <span style="margin-left:1050px" class="checkSpan">小计</span>
+            <span style="margin-left:1150px" class="checkSpan">操作</span>
+        </div>
+        <script>
+            var jsonCart = [];
+            var JsonNumber = [];
+            var Chkall = document.getElementsByClassName("LabelCheck_ys");
+            var Card_Add = 0;
+          
+            function Chk_AllCheck(obj) {
+                var zo = 0;
+                if ($(obj).is(':checked'))
+                {
+                    $("#divCardMain input[type='checkbox']").prop("checked", true)
+                    var arr = document.getElementsByClassName("LabelCheck_ys");
+                    $.each(arr, function (index, Info) {
+                        if (index!=0&&index!=arr.length-1) {
+                            var ZjPrice = (Number)($(Info).parent().next().next().next().next().next().next().html().substring(1));
+                            zo += ZjPrice;
+                            jsonCart.push($(Info).parent().next().next().next().next().next().next().next().next().html());
+                            JsonNumber.push($(Info).parent().next().next().next().next().next().val());
+                        }
+                    });
+                    var GxNumberAll=Chkall.length - 2;
+                    $("#txt_Price_CardAll").html("总计(不含运费)：<span>" + zo.toFixed(2) + "</span>");
+                    $("#lblGxNumber").html("已选择" + GxNumberAll + "件商品");
+                    $("#chk_AllChecked").prop("checked", true);
+                    $("#chk_AllChecked2").prop("checked", true);
+                    window.sessionStorage.setItem("JsonCart", jsonCart);
+                    window.sessionStorage.setItem("JsonNumber", JsonNumber)
+                }
+                else
+                {
+                    $("#divCardMain input[type='checkbox']").prop("checked", false)
+                    $("#txt_Price_CardAll").children().html("0.00");
+                    $("#lblGxNumber").html("已选择0件商品");
+                    $("#chk_AllChecked").prop("checked", false);
+                    $("#chk_AllChecked2").prop("checked", false);
+                    window.sessionStorage.removeItem("JsonCart")
+                    window.sessionStorage.removeItem("JsonNumber")
+                }
+            }
+            var GxNumber = 0;
+            function Chk_Checked_Cart(obj) {
+                    var CardAll_Price = (Number)($("#txt_Price_CardAll").children().html());
+                    var ZjPrice = (Number)($(obj).parent().next().next().next().next().next().next().html().substring(1));
+                    
+                    if ($(obj).prop("checked")) {
+                        GxNumber += 1;
+                        var zo = CardAll_Price + ZjPrice
+                        $("#txt_Price_CardAll").html("总计(不含运费)：<span>" + zo.toFixed(2) + "</span>");
+                        $("#lblGxNumber").html("已选择" + GxNumber + "件商品");
+                        jsonCart.push($(obj).parent().next().next().next().next().next().next().next().next().html());
+                        JsonNumber.push($(obj).parent().next().next().next().next().next().val());
+                    } else
+                    {
+                        GxNumber -= 1;
+                        $("#chk_AllChecked").prop("checked", false);
+                        $("#chk_AllChecked2").prop("checked", false);
+                        var zoo = CardAll_Price - ZjPrice
+                        $("#txt_Price_CardAll").html("总计(不含运费)：<span>" + zoo.toFixed(2) + "</span>");
+                        $("#lblGxNumber").html("已选择" + GxNumber + "件商品");
+                        $.each(jsonCart, function (index, Info) {
+                            if (Info == $(obj).parent().next().next().next().next().next().next().next().next().html())
+                                jsonCart.splice(index, 1);
+                                JsonNumber.splice(index, 1);
+                        })
+                    }
+                  
+                    window.sessionStorage.setItem("JsonCart", jsonCart);
+                    window.sessionStorage.setItem("JsonNumber", JsonNumber)
+            }
+            function OnOrders_Add() {
+                var count = 0;
+                $.each(Chkall, function (index, Info) {
+                    if (Info.checked)
+                    {
+                        window.location.href = "Orders.html";
+                        count++;
+                    }
+                })
+                if (count == 0)
+                    alert("请至少勾选一种商品！")
+            }
+            var Input_Number = "";
+            function Input_Number_Onfocus(obj)
+            {
+                Input_Number = $(obj).val();
+            }
+            function txt_Change_Number(obj) {
+                var number = $(obj).val();
+                var DjPrice = $(obj).prev();
+                var ZjPrice = $(obj).next();
+                if (number >= 100 || number < 1)
+                {
+                    alert("输入的数量不能超过100并且不能小于0")
+                    $(obj).val("1");
+                    txt_Change_Number(obj);
+                }
+                   
+                else if (/^[-]?\d+$/.test(number))
+                {
+                    var zj = number * DjPrice.html().substring(1);
+                    ZjPrice.html("￥" + zj.toFixed(2));
+                    if ($(obj).prev().prev().prev().prev().prev().children().prop("checked")) {
+                        var oobj = $(obj).prev().prev().prev().prev().prev().children();
+                        var CardAll_Price1 = (Number)($("#txt_Price_CardAll").children().html());
+                        var ZjPrice1 = (Number)($(obj).prev().html().substring(1) * (number - Input_Number));
+                        if ($(oobj).prop("checked")) {
+                            var zo = CardAll_Price1 + ZjPrice1
+                            $("#txt_Price_CardAll").html("总计(不含运费)：<span>" + zo.toFixed(2) + "</span>");
+                        } else {
+                           
+                            var zoo = CardAll_Price1 - ZjPrice1
+                            $("#txt_Price_CardAll").html("总计(不含运费)：<span>" + zoo.toFixed(2) + "</span>");
+                        }
+                        Input_Number = number;
+                    }
+                    $.ajax({
+                        url: "Handlers/UpdateCart_ByUidandTid.ashx",
+                        data: { "Uid": window.sessionStorage.getItem("Uid"), "Tid": $(obj).next().next().next().html(), "Number": number },
+                        type: "POST",
+                        success: function (data) {
+                        }
+                    })
+                }
+                else
+                {
+                    alert("输入的数量必须是整数")
+                    $(obj).val(1)
+                    txt_Change_Number(obj);
+              }
+                 
+            }
+            function Delete(obj) {
+                var Tid = $(obj).next().html();
+                var Uid = window.sessionStorage.getItem("Uid");
+                if (confirm("确认移除购物车吗？")) {
+                    $.ajax({
+                        url: "Handlers/Delete_Cart.ashx",
+                        data: { "Uid": Uid, "Tid": Tid },
+                        type: "POST",
+                        success: function (data) {
+                            if (data == "true") {
+                                alert("已成功移除购物车！")
+                                window.location.href = "Cart.html";
+                            }
+                        }
+                    })
+                }
+            }
+        </script>
+        <div id="divCardMain">
+            <!--<div class="divCardMain_div">
+                <br /><br /><br />
+                <label><input onchange="Chk_Checked_Cart(this)" type="checkbox" class="LabelCheck_ys"></label>
+                <img src="Images/zui.png" class="divCardMain_ImgClass" />
+                <span class="divCardMain_Span1"></span>
+                <span class="divCardMain_Span2">银aaaaa杏红茶</span>
+                <span class="divCardMain_Span3">￥130.51</span>
+                <input onchange="txt_Change_Number(this)" class="divCardMain_Input1" type="number" max="100" min="1" />
+                <span class="divCardMain_Span4">￥1300.00</span>
+                <button class="divCardMain_Button1"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>-->
+            <script>
+                $(function () {
+                    window.sessionStorage.removeItem("JsonCart")
+                    window.sessionStorage.removeItem("JsonNumber")
+                    $("#chk_AllChecked").prop("checked", false);
+                    $("#chk_AllChecked2").prop("checked", false);
+                    var Uid = window.sessionStorage.getItem("Uid")
+                    var div = "";
+                    if (Uid == null)
+                        window.location.href = "Login.html";
+                    else {
+                        $.ajax({
+                            url: "Handlers/GetCartByUid.ashx",
+                            data: { "Uid": Uid },
+                            type: "POST",
+                            success: function (data) {
+                                var jsondata = $.parseJSON(data);
+                                
+                                $.each(jsondata, function (index, Info) {
+                                    div += " <div class='divCardMain_div'><br /><br /><br /><label><input onchange='Chk_Checked_Cart(this)' type='checkbox' class='LabelCheck_ys'></label>";
+                                    div += "<img src='UsersImage/" + Info.Imagepath + "' class='divCardMain_ImgClass' /><span class='divCardMain_Span1'>" + Info.brief + "</span>";
+                                    div += " <span class='divCardMain_Span2'>" + Info.Tname + "</span><span class='divCardMain_Span3'>￥" + Info.price + "</span>";
+                                    div += "<input onchange='txt_Change_Number(this)' class='divCardMain_Input1' type='number' max='100' min='1' value='" + Info.Number + "' onfocus='Input_Number_Onfocus(this)'/>";
+                                    div += "<span class='divCardMain_Span4'>￥" + (Info.Number * Info.price).toFixed(2) + "</span><button onclick='Delete(this)' class='divCardMain_Button1'><i class='glyphicon glyphicon-remove'></i></button><Label hidden>" + Info.Tid + "</Label></div>";
+                                })
+                                var divCardMain = $("#divCardMain");
+                                divCardMain.append(div);
+                            }
+                        })
+                    }
+                })
+              
+            </script>
+        </div>
+        <style>
+            .divCardMain_div{
+                background-color:white;border-top:1px solid #694141;line-height:20px;padding-left:10px;height:150px
+            }
+           .divCardMain_ImgClass {
+            width:70px;height:56px;margin-left:60px;
+            }
+           .divCardMain_Span1{
+               margin-left:40px;width:400px;position:absolute;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+                }
+           .divCardMain_Span2{
+               margin-left:40px;margin-top:20px;width:400px;position:absolute
+           }
+           .divCardMain_Span3{
+               margin-left:600px;width:130px;position:absolute
+           }
+           .divCardMain_Input1{
+               margin-left:750px;width:60px;height:30px;margin-top:-10px;position:absolute
+           }
+           .divCardMain_Span4{
+               margin-left:900px;width:130px;position:absolute
+           }
+           .divCardMain_Button1{
+               margin-left:1015px;width:30px;position:absolute;border:0px;background-color:white
+           }
+        </style>
+        <div>
+            <br /><br />
+        </div>
+       <div id="divCardfoot" style="background-color:white;border-top:1px solid #856565;height:70px;line-height:10px;padding-left:10px">
+           <br /><br />
+           <label><input id="chk_AllChecked2" type="checkbox" class="LabelCheck_ys" onchange='Chk_AllCheck(this)'></label>
+           <span style="font-size:16px;margin-top:10px;position:absolute">全选</span>
+           <span id="lblGxNumber" style="font-size:16px;margin-top:10px;margin-left:600px;position:absolute">已选择0件商品</span>
+           <span id="txt_Price_CardAll" style="font-size:16px;margin-top:10px;margin-left:770px;position:absolute">总计(不含运费)：<span>0.00</span></span>
+           <button onclick="OnOrders_Add()" style="margin-left:990px;width:200px;position:absolute;margin-top:-20px;border:0px;background-color:orangered;height:70px">去结算</button>
+       </div>
+        <style>
+              .LabelCheck_ys{
+                  width:30px;height:20px;
+              }
+              .checkSpan{
+                       font-size:16px;margin-top:10px;position:absolute;width:150px;
+              }
+        </style>
+    </div>
+   
+    <div id="divBottom_bottom" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divBottom_bottom").load("bottom.html");
+        });
+    </script>
+</body>
+</html>

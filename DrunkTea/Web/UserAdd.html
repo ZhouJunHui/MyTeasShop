@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="width:1350px;height:100px;padding:30px 50px"><img src="Images/logo (1).png" /><span style="font-size:17px;margin-left:30px;">欢迎注册</span>
+        <span style="font-size:17px;margin-left:800px;color:#999999;position:absolute;width:200px;margin-top:10px">已有账号?&nbsp;&nbsp;<a href="Login.html">请登录></a></span>
+    </div>
+    <div style="width:1350px;height:700px;background-color:#f5f5f5">
+        <br /><br />
+        <div style="background-color:white;width:1200px; height:600px;margin-left:75px;text-align:center">
+            <br /><br /><br /><br />
+            <span style="font-size:18px">注册立享本站服务</span>
+            <br /><br /><br />
+            <form id="form1" action="Handlers/User_Add.ashx" method="post" onsubmit="return sumbitBtn()">
+                <input type="text" name="txtuserName" id="txtuserName" class="input_text_style" placeholder="&nbsp;&nbsp;登陆账号" required/><br /><br />
+                <input type="password" name="txtPwd1" id="txtPwd1" class="input_text_style" placeholder="&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码" required /><br /><br />
+                <input type="password" name="txtPwd2" id="txtPwd2" class="input_text_style" placeholder="&nbsp;&nbsp;再次输入密码" required/><br /><br />
+                <input type="text" name="txtPhone" id="txtPhone" class="input_text_style" placeholder="&nbsp;&nbsp;手机号码" required pattern="^1[3|4|5|7|8][0-9]{9}$" /><br /><br /><br />
+                <input type="submit" id="btnAdd" class="input_text_style btn btn-default" value="立即注册" />
+            </form>       
+        </div>
+        <style>
+            .input_text_style{
+                width:350px;height:50px;
+            }
+        </style>
+        <script>
+            var boo = false;
+            function sumbitBtn() {
+                $.ajax({
+                    url: "Handlers/Users_GetListByLoginName.ashx",
+                    type: "post",
+                    data: { "userName": $("#txtuserName").val() },
+                    success: function (data) {
+                        if (data != "null") {
+                            alert("账号已存在！！");
+                            boo = false;
+                        }
+                        else 
+                            boo = true;
+                    }
+                });
+                
+                if (boo == true) {
+                    if ($("#txtPwd1").val() == $("#txtPwd2").val()) {
+                        return true;
+                    }
+                    else {
+                        alert("两次密码不一致！！");
+                        return false;
+                    }
+                }
+                else
+                    return false;
+                   
+            };
+        </script>
+        <br />
+        <p style="text-align:center">Copyright 2010 - 2018 醉品商城 珠海醉品科技有限公司</p>
+    </div>
+</body>
+</html>

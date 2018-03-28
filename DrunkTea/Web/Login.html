@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="Css/LunBoImg.css" rel="stylesheet" />
+    <link href="Css/HomePage_Main.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="width:350px;height:100px;padding:30px 50px"><img src="Images/logo (1).png" /></div>
+    <div style="width:1350px;height:585px;background-color:#d01524">
+        <img src="Images/登录：d01524.jpg" />
+        <div style="width:380px;height:540px;background-color:white;margin:-565px 900px;text-align:center"><br /><br />
+           <span style="font-size:20px;color:orangered">账号登录</span>
+        <br /><br /><br />
+        <input type="text" id="txtLoginName" style="width:318px;height:46px;" placeholder="&nbsp;&nbsp;&nbsp;登陆账号"/>
+        <br /><br />
+        <input type="password" id="txtPwd" style="width:318px;height:46px;" placeholder="&nbsp;&nbsp;&nbsp;密码" />
+        <br /><br /><br />
+            <input type="button" onclick="btnClick_Login()" style="background-color:orangered;width:318px;height:40px;border:0px;color:white" value="立即登录" />
+      <br /><br /> <a href="UserAdd.html" style="color:#999999">注册醉品账号</a>
+        <br /><br /><br /><br /><br /><br />
+        <div style="color:#999999">
+            <span style="text-decoration:line-through">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            其他方式登录
+            <span style="text-decoration:line-through;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <ul style="margin-top:10px;">
+                <li class="ul_li_Heng" style="margin-left:115px"><a href="#"><img src="Images/支付宝.jpg" /></a></li>
+                <li class="ul_li_Heng"><a href="#"><img src="Images/qq.jpg" /></a></li>
+                <li class="ul_li_Heng"><a href="#"><img src="Images/微信.jpg" /></a></li>
+            </ul><br /><br />
+            <span>正在维护(第三方登录)</span>
+            <style>
+                .ul_li_Heng{                
+                     text-align:center;
+                     float:left;
+                     list-style:none;
+                     margin-right:30px;
+                }
+            </style>
+            <script>
+                function btnClick_Login()
+                {
+                    var LoginName = $("#txtLoginName").val();
+                    var Pwd = $("#txtPwd").val();
+                    if (LoginName=="") {
+                        alert("登陆账号不能为空")
+                    }
+                    else if(Pwd=="") {
+                        alert("密码不能为空")
+                    }
+                    else {
+                        $.ajax({
+                            url: "Handlers/Users_GetListByLoginName.ashx",
+                            type: "post",
+                            data: { "userName": LoginName },
+                            success: function (data) {
+                                var jsonData = $.parseJSON(data);
+                                if (data == "null") 
+                                    alert("账号不存在！！");
+                                else {
+                                    if (jsonData.Pwd == Pwd) {
+                                        window.sessionStorage.setItem("Uid", jsonData.Uid);
+                                        window.location.href = "HomePage.html";
+                                    }
+                                    else
+                                        alert("密码不正确");
+                                }
+                            }
+                        });
+                    }
+                }
+            </script>
+        </div>
+      </div> 
+    </div>
+    <div id="divBottom_bottom" style="width:1350px;height:300px"></div>
+    <script>
+        $(function () {
+            $("#divBottom_bottom").load("bottom.html");
+        });
+    </script>
+</body>
+</html>

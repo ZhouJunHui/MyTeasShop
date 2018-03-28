@@ -1,0 +1,5 @@
+E:\开发资料\TprEnglish\DBUtility\bin\Release\DBUtility.dll
+E:\开发资料\TprEnglish\DBUtility\bin\Release\DBUtility.pdb
+E:\开发资料\TprEnglish\DBUtility\obj\Release\ResolveAssemblyReference.cache
+E:\开发资料\TprEnglish\DBUtility\obj\Release\DBUtility.dll
+E:\开发资料\TprEnglish\DBUtility\obj\Release\DBUtility.pdb
